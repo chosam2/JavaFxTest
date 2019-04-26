@@ -37,33 +37,56 @@ public class T10_ComboGugudanMain extends Application {
 		ObservableList<Integer> list = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9);
 		cmbDan.setItems(list);
 
-		//		cmbDan.setOnAction(new EventHandler<ActionEvent>() {
-		//			
-		//			@Override
-		//			public void handle(ActionEvent event) {
-		//				int dan = cmbDan.getSelectionModel().getSelectedItem();
-		//				
-		//				txtResult.setText(dan + "단\n\n");
-		//				for(int i = 1; i <= 9; i++) {
-		//					int r = dan * i;
-		//					txtResult.appendText(dan + " * " + i + " = " + r + "\n");
-		//				}
-		//			}
-		//		});
+		btnDan.setOnAction(event->{
+			int dan = cmbDan.getSelectionModel().getSelectedItem();
 
-		cmbDan.valueProperty().addListener(new ChangeListener<Integer>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
-				int dan = newValue;
-
-				txtResult.setText(dan + "단\n\n");
-				for (int i = 1; i <= 9; i++) {
-					int r = dan * i;
-					txtResult.appendText(dan + " * " + i + " = " + r + "\n");
-				}
+			txtResult.setText(dan + "단\n\n");
+			for (int i = 1; i <= 9; i++) {
+				int r = dan * i;
+				txtResult.appendText(dan + " * " + i + " = " + r + "\n");
 			}
 		});
+		
+		
+		// 람다식 버전(콤보박스 선택했을 때)
+//		cmbDan.setOnAction(event->{
+//			int dan = cmbDan.getSelectionModel().getSelectedItem();
+//
+//			txtResult.setText(dan + "단\n\n");
+//			for (int i = 1; i <= 9; i++) {
+//				int r = dan * i;
+//				txtResult.appendText(dan + " * " + i + " = " + r + "\n");
+//			}
+//		});
+//		
+		
+//		cmbDan.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent event) {
+//				int dan = cmbDan.getSelectionModel().getSelectedItem();
+//
+//				txtResult.setText(dan + "단\n\n");
+//				for (int i = 1; i <= 9; i++) {
+//					int r = dan * i;
+//					txtResult.appendText(dan + " * " + i + " = " + r + "\n");
+//				}
+//			}
+//		});
+
+//		cmbDan.valueProperty().addListener(new ChangeListener<Integer>() {
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
+//				int dan = newValue;
+//
+//				txtResult.setText(dan + "단\n\n");
+//				for (int i = 1; i <= 9; i++) {
+//					int r = dan * i;
+//					txtResult.appendText(dan + " * " + i + " = " + r + "\n");
+//				}
+//			}
+//		});
 
 		hbox.getChildren().addAll(cmbDan, btnDan);
 

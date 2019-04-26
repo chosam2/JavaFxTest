@@ -21,7 +21,7 @@ public class T09_ComboBoxTest extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		BorderPane root = new BorderPane();
-		HBox hbox = new HBox();
+		HBox hbox = new HBox();	// Container 중 하나
 		TextArea txtArea = new TextArea();
 		
 		ComboBox<String> combo = new ComboBox<>();
@@ -39,6 +39,7 @@ public class T09_ComboBoxTest extends Application{
 				txtArea.setText(newValue);
 			}
 		});
+		
 		
 		ObservableList<String> fruitList =
 				FXCollections.observableArrayList(	// 내가 원하는 리스트 형태를 넣으면 ObservableList로 바뀜(오버로딩 구현되있음)
@@ -65,7 +66,7 @@ public class T09_ComboBoxTest extends Application{
 		
 		hbox.setSpacing(10);
 		hbox.setPadding(new Insets(10));
-		hbox.getChildren().addAll(combo, combo2, btn);
+		hbox.getChildren().addAll(combo, combo2, btn);	// getChildren는 ObservableList 형태임.
 		
 		root.setTop(hbox);
 		root.setCenter(txtArea);
