@@ -3,15 +3,17 @@ package kr.or.ddit.basic;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.fxml.Initializable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.CheckBox;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.text.Text;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 
 public class Z01_CheckComboBoxTestController implements Initializable {
 
@@ -42,25 +44,41 @@ public class Z01_CheckComboBoxTestController implements Initializable {
 	@FXML
 	TextArea txt_Show;
 
-	ToggleGroup group = new ToggleGroup();
-
+	
+	String str = "";
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		ToggleGroup group = new ToggleGroup();
+		
 		radio_femail.setToggleGroup(group);
+		radio_femail.setUserData("여 성");
+		
 		radio_male.setToggleGroup(group);
+		radio_male.setUserData("남 성");
+		radio_male.setSelected(true);
 
-		//		group.selectedToggleProperty().addListener((observable, oldVal, newVal) -> System.out.println(newVal + "선택"));
+
 		btn_Show.setOnAction(event -> {
+			str = "";
 			txt_Show.clear();
 
-			String str = "";
 			str += "이 름 : " + txt_name.getText() + "\n성 별 : ";
+			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 
-			if (radio_femail.isSelected()) {
-				str += radio_femail.getText() + "\n취 미 : ";
-			} else if (radio_male.isSelected()) {
-				str += radio_male.getText() + "\n취 미 : ";
-			}
+				@Override
+				public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+					if(group.getSelectedToggle().getUserData() != null) {
+						str += group.getSelectedToggle().getUserData().toString() + "\n취 미 : ";
+						System.out.println(str);
+					}
+				}
+			});
+
+//			if (radio_femail.isSelected()) {
+//				str += radio_femail.getText() + "\n취 미 : ";
+//			} else if (radio_male.isSelected()) {
+//				str += radio_male.getText() + "\n취 미 : ";
+//			}
 			//			if (group.getSelectedToggle().isSelected()) {
 			//				str += radio_femail.getText() + "\n취 미 : ";
 			//			} else if (group.getSelectedToggle().isSelected()) {

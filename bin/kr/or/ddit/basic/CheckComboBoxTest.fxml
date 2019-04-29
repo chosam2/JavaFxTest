@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.or.ddit.basic.Z01_CheckComboBoxTestController">
+   <children>
+      
+      <FlowPane hgap="10.0" layoutX="10.0" layoutY="26.0" prefHeight="30.0" prefWidth="650.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이 름 :" />
+            <TextField fx:id="txt_name" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </FlowPane>
+      
+      <FlowPane hgap="10.0" layoutX="10.0" layoutY="72.0" prefHeight="30.0" prefWidth="650.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="성 별 :" />
+            <RadioButton fx:id="radio_male" mnemonicParsing="false" text="남" />
+            <RadioButton fx:id="radio_femail" mnemonicParsing="false" text="여" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </FlowPane>
+      
+      <FlowPane hgap="10.0" layoutX="10.0" layoutY="118.0" prefHeight="30.0" prefWidth="650.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="취 미 :" />
+            <CheckBox fx:id="chk_trip" mnemonicParsing="false" text="여행" />
+            <CheckBox fx:id="chk_mountain" mnemonicParsing="false" text="등산" />
+            <CheckBox fx:id="chk_book" mnemonicParsing="false" text="독서" />
+            <CheckBox fx:id="chk_go" mnemonicParsing="false" text="바둑" />
+            <CheckBox fx:id="chk_chess" mnemonicParsing="false" text="장기" />
+            <CheckBox fx:id="chk_game" mnemonicParsing="false" text="게임" />
+            <CheckBox fx:id="chk_tennis" mnemonicParsing="false" text="테니스" />
+            <CheckBox fx:id="chk_badminton" mnemonicParsing="false" text="배드민턴" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </FlowPane>
+      
+      <Button fx:id="btn_Show" layoutX="14.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="보 기" />
+      <TextArea fx:id="txt_Show" layoutX="14.0" layoutY="211.0" prefHeight="165.0" prefWidth="286.0" />
+      
+   </children>
+</AnchorPane>

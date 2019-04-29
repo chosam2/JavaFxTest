@@ -48,6 +48,10 @@ public class FxmlEventTestController implements Initializable {
 //		});
 //	}
 
+	 /**
+	  * 출력 버튼을 클릭할 때 실행되는 메서드
+	  * @param event
+	  */
 	@FXML
 	public void btnClick(ActionEvent event) {
 		// TextField에는 출력할 단을 입력하고 버튼을 누르면 해당 단을 TextArea영역에 출력하시오.
