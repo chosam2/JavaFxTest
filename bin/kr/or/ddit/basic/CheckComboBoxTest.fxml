@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.or.ddit.basic.Z01_CheckComboBoxTestController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="kr.or.ddit.basic.Z01_CheckComboBoxTestController">
    <children>
       
       <FlowPane hgap="10.0" layoutX="10.0" layoutY="26.0" prefHeight="30.0" prefWidth="650.0">

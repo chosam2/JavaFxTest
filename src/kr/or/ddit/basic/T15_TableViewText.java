@@ -5,8 +5,12 @@ import java.util.regex.Pattern;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,11 +36,11 @@ public class T15_TableViewText extends Application {
 
 		TableColumn<Member, String> nameCol = new TableColumn<>("이 름");
 		TableColumn<Member, String> korNamecol = new TableColumn<>("한국이름");
-//		korNamecol.setStyle("-fx-alignmnet : CENTER"); // 중앙정렬 --> 무엇인가?
+		//		korNamecol.setStyle("-fx-alignmnet : CENTER"); // 중앙정렬 --> 무엇인가?
 
 		// 해당 컬럼에 나타날 데이터 연결하기
 		// (출력할 객체의 멤버변수와 출력할 컬럼을 매칭시킨다.)
-		korNamecol.setCellValueFactory(new PropertyValueFactory<>("korName"));
+		korNamecol.setCellValueFactory(new PropertyValueFactory<>("korName")); // 값을 넣을 때 사용
 
 		TableColumn<Member, String> engNameCol = new TableColumn<>("영어이름");
 		engNameCol.setCellValueFactory(new PropertyValueFactory<>("engName"));
@@ -95,7 +99,43 @@ public class T15_TableViewText extends Application {
 		btnAdd.setOnAction(e -> {
 			if (txtKorName.getText().isEmpty() || txtEngName.getText().isEmpty() || txtAge.getText().isEmpty() || txtTel.getText().isEmpty() || txtAddr.getText().isEmpty()) {
 
-				System.out.println("빈 항목이 있습니다.");
+//				System.out.println("빈 항목이 있습니다.");
+				errMsg("작업 오류", "빈 항목이 있습니다");
+				return;
+			}
+
+			if (!Pattern.matches("^[0-9]+$", txtAge.getText())) {
+//				System.out.println("데이터 오류 : 나이는 정수형으로 입력하세요.");
+				errMsg("데이터 오류", "나이는 정수형으로 입력하세요.");
+				txtAge.requestFocus(); // 해당 객체에 포커스 주기
+				return;
+			}
+
+			data.add(new Member(txtKorName.getText(), txtEngName.getText(), Integer.parseInt(txtAge.getText()), txtTel.getText(), txtAddr.getText()));
+
+			//			System.out.println("작업 결과 : " + txtKorName.getText() + "님 정보를 추가했습니다.");
+			infoMsg("작업 결과", txtKorName.getText() + "님 정보를 추가했습니다.");
+
+			txtKorName.clear();
+			txtEngName.clear();
+			txtAge.clear();
+			txtTel.clear();
+			txtAddr.clear();
+		});
+
+		Button btnEdit = new Button("수정");
+		btnEdit.setOnAction(e -> {
+			
+			if (table.getSelectionModel().isEmpty()) { // 선택한 항목이 없을때...
+				errMsg("작업 오류", "수정할 자료를 선택한 후 삭제하세요");
+				return;
+			}
+			
+			
+			if (txtKorName.getText().isEmpty() || txtEngName.getText().isEmpty() || txtAge.getText().isEmpty() || txtTel.getText().isEmpty() || txtAddr.getText().isEmpty()) {
+
+//				System.out.println("빈 항목이 있습니다.");
+				errMsg("작업 오류", "빈 항목이 있습니다");
 				return;
 			}
 
@@ -105,9 +145,9 @@ public class T15_TableViewText extends Application {
 				return;
 			}
 
-			data.add(new Member(txtKorName.getText(), txtEngName.getText(), Integer.parseInt(txtAge.getText()), txtTel.getText(), txtAddr.getText()));
+			data.set(table.getSelectionModel().getSelectedIndex(), new Member(txtKorName.getText(), txtEngName.getText(), Integer.parseInt(txtAge.getText()), txtTel.getText(), txtAddr.getText()));
 
-			System.out.println("작업 결과 : " + txtKorName.getText() + "님 정보를 추가했습니다.");
+			infoMsg("작업 결과", txtKorName.getText() + "님 정보를 수정했습니다.");
 
 			txtKorName.clear();
 			txtEngName.clear();
@@ -116,7 +156,76 @@ public class T15_TableViewText extends Application {
 			txtAddr.clear();
 		});
 
-		vbox.getChildren().addAll(btnAdd);
+		Button btnDel = new Button("삭제");
+		btnDel.setOnAction(e -> {
+			if (table.getSelectionModel().isEmpty()) { // 선택한 항목이 없을때...
+				errMsg("작업 오류", "삭제할 자료를 선택한 후 삭제하세요");
+				return;
+			}
+			data.remove(table.getSelectionModel().getSelectedIndex());
+
+			infoMsg("작업 결과", txtKorName.getText() + "님 정보를 삭제했습니다.");
+
+			txtKorName.clear();
+			txtEngName.clear();
+			txtAge.clear();
+			txtTel.clear();
+			txtAddr.clear();
+
+		});
+		
+		Button btnTest1 = new Button("속성 연습1");
+		btnTest1.setOnAction(e->{
+			// TextField, TextArea등 문자를 입력하는 객체를 ReadOnly를 설정하는 메서드
+			// => setEditable(), 이 메서드에 true를 설정하면 '입력 가능' false를 설정하면
+			// '읽기전용'이 된다.
+			txtKorName.setEditable(false);
+			txtEngName.setEditable(false);
+			
+			// 객체를 활성화 또는 비활성화 시키는 메서드 => setDisable()
+			// 이 메서드에 true를 설정하면 '비활성화' false를 설정하면 '활성화'된다.
+			btnAdd.setDisable(true);
+			btnEdit.setDisable(true);
+			
+			txtKorName.setPromptText("한글이름 입력"); // 입력상자에 흐릿하게 나타내는 메시지
+			txtAddr.requestFocus(); // 포커스 주기
+		});
+		
+		Button btnTest2 = new Button("속성 연습2");
+		btnTest2.setOnAction(e->{
+			txtKorName.setEditable(true);
+			txtEngName.setEditable(true);
+			
+			btnAdd.setDisable(false);
+			btnEdit.setDisable(false);
+		});
+		
+		// TableView를 클릭했을 때의 처리...
+		table.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				// TableView에서 선택한 줄의 데이터를 얻는다.
+				Member mem = table.getSelectionModel().getSelectedItem();
+				
+				txtKorName.setText(mem.getKorName());
+				txtEngName.setText(mem.getEngName());
+				txtAge.setText(String.valueOf(mem.getAge()));
+				txtTel.setText(mem.getTel());
+				txtAddr.setText(mem.getAddr());
+			}
+		});
+		
+		Button btnClear = new Button("청소");
+		btnClear.setOnAction(e->{
+			txtKorName.clear();
+			txtEngName.clear();
+			txtAge.clear();
+			txtTel.clear();
+			txtAddr.clear();
+		});
+
+		vbox.getChildren().addAll(btnAdd, btnEdit, btnDel, btnTest1, btnTest2, btnClear);
 
 		root.setCenter(table);
 		root.setRight(vbox);
@@ -128,11 +237,39 @@ public class T15_TableViewText extends Application {
 		primaryStage.setTitle("TableView 연습");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 
 	}
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	/**
+	 * 에러메시지 출력
+	 * @param headerText
+	 * @param msg
+	 */
+	public void errMsg(String headerText, String msg) {
+		Alert errAlert = new Alert(AlertType.ERROR);
+		errAlert.setTitle("오류");
+		errAlert.setHeaderText(headerText);
+		errAlert.setContentText(msg);
+		errAlert.showAndWait();
+	}
+	
+
+	/**
+	 * 정보메시지 출력
+	 * @param headerText
+	 * @param msg
+	 */
+	public void infoMsg(String headerText, String msg) {
+		Alert infoAlert = new Alert(AlertType.INFORMATION);
+		infoAlert.setTitle("정보 확인");
+		infoAlert.setHeaderText(headerText);
+		infoAlert.setContentText(msg);
+		infoAlert.showAndWait();
 	}
 
 	public class Member {

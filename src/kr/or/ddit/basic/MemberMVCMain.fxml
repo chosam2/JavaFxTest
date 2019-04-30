@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" 
+		xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+		fx:controller="kr.or.ddit.basic.Z04_MemberMVCController">
+   <children>
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="40.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원  ID : " />
+            <TextField fx:id="input_id" prefWidth="300.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </FlowPane>
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="40.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원이름 : " />
+            <TextField fx:id="input_name" prefWidth="300.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </FlowPane>
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="40.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원전화 : " />
+            <TextField fx:id="input_tel" prefWidth="300.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </FlowPane>
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="40.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원주소 : " />
+            <TextField fx:id="input_tel" prefWidth="300.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </FlowPane>
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="40.0" prefWidth="600.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <Button fx:id="btn_add" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="추 가" />
+            <Button fx:id="btn_edit" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="수 정" />
+            <Button fx:id="btn_delete" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="삭 제" />
+            <Button fx:id="btn_ok" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="확 인" />
+            <Button fx:id="btn_cancel" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="취 소" />
+         </children>
+      </FlowPane>
+      <TableView fx:id="tableView" prefHeight="300.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="50.0" text="회원ID" />
+          <TableColumn prefWidth="150.0" text="회원이름" />
+            <TableColumn prefWidth="200.0" text="회원전화" />
+            <TableColumn prefWidth="200.0" text="회원주소" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
