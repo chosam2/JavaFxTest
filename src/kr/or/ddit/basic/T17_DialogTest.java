@@ -117,7 +117,7 @@ public class T17_DialogTest extends Application {
 			}
 			
 			// 부모창에서 FXML로 만든 자식창의 컨트롤객체 얻기
-			TextField txtName = (TextField)parent.lookup("#txtName");
+			TextField txtName = (TextField)parent.lookup("#txtName"); // lookup : 찾다 -> #txtName 아이디가 txtName인것 찾아라
 			PasswordField pass = (PasswordField)parent.lookup("#pass");
 			
 			Button btnOk = (Button) parent.lookup("#btnOk");

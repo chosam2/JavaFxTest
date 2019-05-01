@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" 
+xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+fx:controller="kr.or.ddit.basic.paging.PagingController">
+   <children>
+      <TableView fx:id="tableView" prefHeight="440.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="100.0" text="ID" />
+          <TableColumn fx:id="name" prefWidth="100.0" text="이름" />
+            <TableColumn fx:id="address" prefWidth="400.0" text="주소" />
+        </columns>
+      </TableView>
+      <Pagination fx:id="pagination" prefHeight="500.0" prefWidth="600.0" />
+   </children>
+</AnchorPane>

@@ -57,10 +57,10 @@ public class T15_TableViewText extends Application {
 		addrCol.setCellValueFactory(new PropertyValueFactory<>("addr"));
 
 		// 생성된 각 컬럼들을 TableView에 추가한다.
-		table.getColumns().addAll(nameCol, ageCol, telCol, addrCol);
+		table.getColumns().addAll(nameCol, ageCol, telCol, addrCol);	// fxml에서 만들어 놓으면 이거 안해도됨.
 
 		// TableView에 데이터 설정하기 방법2
-		// table.setItems(data);
+//		 table.setItems(data);
 
 		// -----------------------------------------------------------------
 		GridPane grid = new GridPane();
